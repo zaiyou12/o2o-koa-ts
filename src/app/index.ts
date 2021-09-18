@@ -1,5 +1,6 @@
 import Koa from "koa";
 import "reflect-metadata";
+import jwt from "koa-jwt";
 import cors from "@koa/cors";
 import winston from "winston";
 import helmet from "koa-helmet";
@@ -8,6 +9,7 @@ import bodyParser from "koa-bodyparser";
 import { logger } from "./logger";
 import { protectedRouter } from "../router/protectedRoutes";
 import { unprotectedRouter } from "../router/unprotectedRoutes";
+import { config } from "../config";
 
 const app = new Koa();
 
@@ -40,6 +42,10 @@ app.use(bodyParser());
 
 // these routes are NOT protected by the JWT middleware, also include middleware to respond with "Method Not Allowed - 405".
 app.use(unprotectedRouter.routes()).use(unprotectedRouter.allowedMethods());
+
+// JWT middleware -> below this line routes are only reached if JWT token is valid, secret as env variable
+// do not protect swagger-json and swagger-html endpoints
+app.use(jwt({ secret: config.jwtSecret }).unless({ path: [/^\/swagger-/] }))
 
 app.use(protectedRouter.routes()).use(protectedRouter.allowedMethods());
 
