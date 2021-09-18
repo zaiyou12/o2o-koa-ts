@@ -2,7 +2,7 @@ import { Context } from "koa";
 import path from "path";
 import { transports, format } from "winston";
 
-import { config } from "./config";
+import { config } from "../config";
 
 const logger = (winstonInstance: any): any => {
   winstonInstance.configure({
