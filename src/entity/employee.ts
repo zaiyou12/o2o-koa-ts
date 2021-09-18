@@ -16,7 +16,7 @@ export class Employee {
   id: number;
 
   @Column({ length: 80 })
-  @Length(10, 80)
+  @Length(5, 25)
   name: string;
 
   @Column({ length: 100 })
@@ -43,7 +43,7 @@ export class Employee {
   updated: Date;
 }
 
-export const userSchema = {
+export const employeeSchema = {
   id: { type: "number", required: true, example: 1 },
   name: { type: "string", required: true, example: "Aaron" },
   email: { type: "string", required: true, example: "aaron.so@gmail.com" },

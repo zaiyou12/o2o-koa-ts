@@ -1,4 +1,4 @@
-import {Employee} from '../src/entity/employee'
+import {Employee} from '../../src/entity/employee'
 
 test("employee", () => {
   const employee = new Employee()

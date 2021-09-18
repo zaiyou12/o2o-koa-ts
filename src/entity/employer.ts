@@ -1,3 +1,4 @@
+import { Length } from "class-validator";
 import {
   Column,
   Entity,
@@ -12,9 +13,11 @@ export class Employer {
   id: number;
 
   @Column({ length: 80 })
+  @Length(5, 25)
   name: string;
 
   @Column({ length: 100 })
+  @Length(10, 100)
   email: string;
 
   @CreateDateColumn()

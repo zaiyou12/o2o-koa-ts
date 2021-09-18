@@ -1,5 +1,5 @@
 import Router from "@koa/router"
-import { general, employee } from "../controller"
+import { general } from "./controller"
 
 const unprotectedRouter = new Router()
 

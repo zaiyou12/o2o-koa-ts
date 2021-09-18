@@ -7,8 +7,8 @@ import helmet from "koa-helmet";
 import bodyParser from "koa-bodyparser";
 
 import { logger } from "./logger";
-import { protectedRouter } from "../router/protectedRoutes";
-import { unprotectedRouter } from "../router/unprotectedRoutes";
+import { protectedRouter } from "../protectedRoutes";
+import { unprotectedRouter } from "../unprotectedRoutes";
 import { config } from "../config";
 
 const app = new Koa();
