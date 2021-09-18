@@ -9,6 +9,7 @@ import { createConnection, ConnectionOptions } from "typeorm";
 import { logger } from "./logger";
 import { config } from "./config";
 import { unprotectedRouter } from "./router/unprotectedRoutes";
+import { protectedRouter } from "./router/protectedRoutes";
 
 const connectionOptions: ConnectionOptions = {
   type: "mariadb",
@@ -55,8 +56,11 @@ createConnection(connectionOptions)
 
     // Enable bodyParser with default options
     app.use(bodyParser());
+
     // these routes are NOT protected by the JWT middleware, also include middleware to respond with "Method Not Allowed - 405".
     app.use(unprotectedRouter.routes()).use(unprotectedRouter.allowedMethods());
+
+    app.use(protectedRouter.routes()).use(protectedRouter.allowedMethods());
 
     app.listen(config.port, () => {
       console.log(`Koa server is listeng on port ${config.port}`);
