@@ -1,9 +1,10 @@
 import { SwaggerRouter } from "koa-swagger-decorator";
-import { general } from "../controller"
+import { general, employee } from "../controller"
 
 const unprotectedRouter = new SwaggerRouter()
 
 unprotectedRouter.get('/', general.helloWorld)
+unprotectedRouter.get('/employee', employee.getUsers)
 
 unprotectedRouter.swagger({
   title: "o2o-koa-ts",
